@@ -147,17 +147,6 @@ Menjalankan test suite dalam interactive watch mode.
 4. Push ke branch (`git push origin feature/AmazingFeature`)
 5. Buat Pull Request
 
-## Lisensi
-
-Project ini menggunakan lisensi MIT - lihat file [LICENSE](LICENSE) untuk detail.
-
-## Kontak
-
-**Radio Republik Indonesia (RRI)**
-- Website: [rri.co.id](https://rri.co.id)
-- Email: info@rri.co.id
-- Telepon: (021) 345-7890
-
 ## Roadmap
 
 - [ ] Integrasi sistem notifikasi real-time
