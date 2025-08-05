@@ -46,15 +46,15 @@ const Footer = () => {
               <span className="contact-icon">📍</span>
               <div className="contact-details">
                 <strong>Alamat:</strong><br />
-                Jl. Medan Merdeka Barat No. 4-5<br />
-                Jakarta Pusat 10110
+                Jl. Gatot Subroto No.26, Pahoman, Engal, Kota Bandar Lampung<br />
+                Lampung 35213
               </div>
             </div>
             <div className="contact-item">
               <span className="contact-icon">📞</span>
               <div className="contact-details">
                 <strong>Telepon:</strong><br />
-                (021) 345-7890
+                (0721) 265-772
               </div>
             </div>
             <div className="contact-item">
@@ -68,7 +68,7 @@ const Footer = () => {
               <span className="contact-icon">🕒</span>
               <div className="contact-details">
                 <strong>Jam Operasional:</strong><br />
-                Senin - Jumat: 08:00 - 17:00 WIB
+                Senin - Jumat: 08:00 - 16:00 WIB
               </div>
             </div>
           </div>
