@@ -70,7 +70,7 @@ Website platform advokasi publik Radio Republik Indonesia yang menghubungkan mas
 - **File Upload System** - Upload multiple file dengan validasi
 - **Real-time Status Updates** - Update status secara langsung
 
-## Struktur Komponen
+## Struktur Aplikasi
 
 ```
 src/
@@ -81,32 +81,87 @@ src/
 │   ├── TrackingSection.js/css - Sistem pelacakan laporan
 │   ├── StatsSection.js/css - Dashboard statistik publik
 │   ├── NewsSection.js/css - Berita dampak dan pencapaian
+│   ├── AdminNavigation.js/css - Navigasi admin dashboard
+│   ├── ReportManagement.js/css - Manajemen laporan
+│   ├── UserManagement.js/css - Manajemen user
+│   ├── ProtectedRoute.js - Protected route untuk admin
 │   └── Footer.js/css - Footer dengan informasi kontak
-├── App.js - Main component
+├── pages/
+│   ├── HomePage.js/css - Halaman utama
+│   ├── ReportPage.js/css - Halaman pelaporan
+│   ├── TrackingPage.js/css - Halaman pelacakan laporan
+│   ├── LoginPage.js/css - Halaman login
+│   └── AdminDashboard.js/css - Dashboard admin
+├── App.js - Main application component
 ├── App.css - Global styles
-└── index.js - Entry point
+└── index.js - Entry point aplikasi
 ```
 
-### Code Splitting
+## Cara Menjalankan Aplikasi
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+### Prasyarat
+- Node.js (versi 14 atau lebih tinggi)
+- npm atau yarn package manager
 
-### Analyzing the Bundle Size
+### Instalasi
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+1. Clone repository ini:
+```bash
+git clone [repository-url]
+cd rri-advokasi
+```
 
-### Making a Progressive Web App
+2. Install dependencies:
+```bash
+npm install
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+3. Jalankan aplikasi dalam mode development:
+```bash
+npm start
+```
 
-### Advanced Configuration
+Aplikasi akan terbuka di [http://localhost:3000](http://localhost:3000)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+### Build untuk Production
 
-### Deployment
+```bash
+npm run build
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+Perintah ini akan membuat folder `build` dengan file-file yang siap untuk deployment.
 
-### `npm run build` fails to minify
+### Testing
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+```bash
+npm test
+```
+
+Menjalankan test suite dalam interactive watch mode.
+
+## Kontribusi
+
+1. Fork repository ini
+2. Buat branch feature (`git checkout -b feature/AmazingFeature`)
+3. Commit perubahan (`git commit -m 'Add some AmazingFeature'`)
+4. Push ke branch (`git push origin feature/AmazingFeature`)
+5. Buat Pull Request
+
+## Lisensi
+
+Project ini menggunakan lisensi MIT - lihat file [LICENSE](LICENSE) untuk detail.
+
+## Kontak
+
+**Radio Republik Indonesia (RRI)**
+- Website: [rri.co.id](https://rri.co.id)
+- Email: info@rri.co.id
+- Telepon: (021) 345-7890
+
+## Roadmap
+
+- [ ] Integrasi sistem notifikasi real-time
+- [ ] API mobile application
+- [ ] Dashboard analytics yang lebih detail
+- [ ] Sistem rating dan feedback
+- [ ] Integrasi dengan media sosial
