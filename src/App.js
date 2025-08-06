@@ -7,6 +7,8 @@ import HomePage from './pages/HomePage';
 import ReportPage from './pages/ReportPage';
 import TrackingPage from './pages/TrackingPage';
 import LoginPage from './pages/LoginPage';
+import RegisterPage from './pages/RegisterPage';
+import CitizenDashboard from './pages/CitizenDashboard';
 import AdminDashboard from './pages/AdminDashboard';
 import ProtectedRoute from './components/ProtectedRoute';
 
@@ -18,9 +20,11 @@ function App() {
         <main className="main-content">
           <Routes>
             <Route path="/" element={<HomePage />} />
-            <Route path="/lapor" element={<ReportPage />} />
-            <Route path="/lacak" element={<TrackingPage />} />
+            <Route path="/laporan" element={<ReportPage />} />
+            <Route path="/pelacakan" element={<TrackingPage />} />
             <Route path="/login" element={<LoginPage />} />
+            <Route path="/daftar" element={<RegisterPage />} />
+            <Route path="/dashboard-warga" element={<CitizenDashboard />} />
             <Route 
               path="/admin/*" 
               element={

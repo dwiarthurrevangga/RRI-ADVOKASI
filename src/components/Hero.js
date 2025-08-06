@@ -1,21 +1,47 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import './Hero.css';
 
 const Hero = () => {
+  const navigate = useNavigate();
+
   return (
     <section className="hero" id="beranda">
       <div className="hero-overlay">
         <div className="hero-content">
           <div className="hero-text">
-            <h1>RRI ADVOKASI</h1>
+            <h1>HALO RRI </h1>
             <h2>Platform Pelaporan Publik</h2>
             <p>
-              Suarakan aspirasi dan keluhan Anda kepada Radio Republik Indonesia. 
-              Kami menghubungkan masyarakat dengan pemerintah untuk menciptakan perubahan positif.
+              HALO RRI adalah platform pelaporan publik yang memudahkan masyarakat untuk melaporkan isu-isu penting di sekitar mereka.
             </p>
             <div className="hero-buttons">
-              <button className="btn btn-primary">Buat Laporan</button>
-              <button className="btn btn-secondary">Lacak Laporan Anda</button>
+              <button 
+                className="btn btn-primary"
+                onClick={() => navigate('/laporan')}
+              >
+                Buat Laporan
+              </button>
+              <button 
+                className="btn btn-secondary"
+                onClick={() => navigate('/pelacakan')}
+              >
+                Lacak Laporan Anda
+              </button>
+            </div>
+            <div className="hero-user-actions">
+              <button 
+                className="btn btn-outline"
+                onClick={() => navigate('/daftar')}
+              >
+                📝 Daftar Akun Warga
+              </button>
+              <button 
+                className="btn btn-outline"
+                onClick={() => navigate('/dashboard-warga')}
+              >
+                👤 Dashboard Warga
+              </button>
             </div>
           </div>
           <div className="hero-stats">

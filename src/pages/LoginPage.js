@@ -6,7 +6,7 @@ const LoginPage = () => {
   const [formData, setFormData] = useState({
     username: '',
     password: '',
-    role: 'reporter'
+    role: 'citizen'
   });
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
@@ -25,12 +25,31 @@ const LoginPage = () => {
 
     // Simulate authentication
     setTimeout(() => {
-      // Mock authentication logic
+      // Check for citizen login (from localStorage)
+      if (formData.role === 'citizen') {
+        const storedUser = localStorage.getItem('userData');
+        if (storedUser) {
+          const userData = JSON.parse(storedUser);
+          if (userData.email === formData.username) {
+            // In real app, you'd verify password here
+            localStorage.setItem('userToken', 'citizen-token-' + Date.now());
+            navigate('/dashboard-warga');
+            setLoading(false);
+            return;
+          }
+        }
+        alert('Email atau password salah. Jika belum punya akun, silakan daftar terlebih dahulu.');
+        setLoading(false);
+        return;
+      }
+
+      // Mock authentication logic for staff
       if (formData.username && formData.password) {
         const userData = {
           username: formData.username,
           role: formData.role,
-          name: formData.role === 'admin' ? 'Administrator' : 'Reporter',
+          name: formData.role === 'admin' ? 'Administrator' : 
+                formData.role === 'redaktur' ? 'Redaktur' : 'Reporter',
           isAuthenticated: true
         };
         
@@ -61,6 +80,7 @@ const LoginPage = () => {
               onChange={handleInputChange}
               required
             >
+              <option value="citizen">Warga</option>
               <option value="reporter">Reporter</option>
               <option value="redaktur">Redaktur</option>
               <option value="admin">Administrator</option>
@@ -68,14 +88,16 @@ const LoginPage = () => {
           </div>
 
           <div className="form-group">
-            <label htmlFor="username">Username</label>
+            <label htmlFor="username">
+              {formData.role === 'citizen' ? 'Email' : 'Username'}
+            </label>
             <input
-              type="text"
+              type={formData.role === 'citizen' ? 'email' : 'text'}
               id="username"
               name="username"
               value={formData.username}
               onChange={handleInputChange}
-              placeholder="Masukkan username"
+              placeholder={formData.role === 'citizen' ? 'Masukkan email' : 'Masukkan username'}
               required
             />
           </div>
@@ -102,6 +124,9 @@ const LoginPage = () => {
           <h4>Demo Credentials:</h4>
           <div className="demo-accounts">
             <div className="demo-account">
+              <strong>Warga:</strong> Daftar akun baru atau gunakan email terdaftar
+            </div>
+            <div className="demo-account">
               <strong>Reporter:</strong> reporter / password123
             </div>
             <div className="demo-account">
@@ -114,7 +139,20 @@ const LoginPage = () => {
         </div>
 
         <div className="login-footer">
-          <p>Tidak punya akun? Hubungi administrator untuk mendapatkan akses.</p>
+          {formData.role === 'citizen' ? (
+            <p>
+              Belum punya akun? 
+              <button 
+                type="button" 
+                className="register-link"
+                onClick={() => navigate('/daftar')}
+              >
+                Daftar di sini
+              </button>
+            </p>
+          ) : (
+            <p>Tidak punya akun? Hubungi administrator untuk mendapatkan akses.</p>
+          )}
           <button 
             type="button" 
             className="back-btn"
