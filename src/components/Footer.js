@@ -8,9 +8,9 @@ const Footer = () => {
         {/* Logo & Description Section */}
         <div className="footer-section footer-brand">
           <div className="footer-logo">
-            <img src="/logo-rri.png" alt="RRI Logo" className="footer-logo-img" />
+
             <div className="footer-logo-text">
-              <h3>RRI ADVOKASI</h3>
+              <h3>HALO RRI</h3>
               <p>Platform Pelaporan Publik RRI</p>
             </div>
           </div>
@@ -98,13 +98,6 @@ const Footer = () => {
         <div className="footer-bottom-content">
           <div className="footer-copyright">
             <p>&copy; 2025 Radio Republik Indonesia Advokasi. Semua hak dilindungi.</p>
-          </div>
-          <div className="footer-legal">
-            <a href="#privacy">Kebijakan Privasi</a>
-            <span className="separator">•</span>
-            <a href="#terms">Syarat & Ketentuan</a>
-            <span className="separator">•</span>
-            <a href="#disclaimer">Disclaimer</a>
           </div>
         </div>
       </div>
