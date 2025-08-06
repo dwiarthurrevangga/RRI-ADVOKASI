@@ -31,11 +31,11 @@ const StatsSection = () => {
       { name: 'Lainnya', count: 71, percentage: 1.4, color: '#7f8c8d' }
     ],
     regions: [
-      { name: 'Jakarta', count: 1247, percentage: 23.8 },
-      { name: 'Surabaya', count: 892, percentage: 17.0 },
-      { name: 'Bandung', count: 756, percentage: 14.4 },
-      { name: 'Medan', count: 634, percentage: 12.1 },
-      { name: 'Makassar', count: 523, percentage: 10.0 },
+      { name: 'Kedaton', count: 1247, percentage: 23.8 },
+      { name: 'Pahoman', count: 892, percentage: 17.0 },
+      { name: 'Way Halim', count: 756, percentage: 14.4 },
+      { name: 'Gunung Terang', count: 634, percentage: 12.1 },
+      { name: 'Sukarame', count: 523, percentage: 10.0 },
       { name: 'Lainnya', count: 1195, percentage: 22.8 }
     ]
   };

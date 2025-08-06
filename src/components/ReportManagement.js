@@ -9,14 +9,14 @@ const ReportManagement = ({ userRole }) => {
   const reports = [
     {
       id: 'RPT1723456789',
-      title: 'Jalan Rusak di Jl. Sudirman',
+      title: 'Jalan Rusak di Way Hui',
       category: 'Infrastruktur',
       status: 'Dalam Proses Validasi',
       date: '2025-08-01',
       reporter: 'Anonim',
       assignedTo: 'John Reporter',
       priority: 'High',
-      location: 'Jakarta Selatan',
+      location: 'Lampung Selatan',
       description: 'Jalan berlubang sepanjang 500m menyebabkan kemacetan dan kecelakaan kecil.'
     },
     {
@@ -28,7 +28,7 @@ const ReportManagement = ({ userRole }) => {
       reporter: 'Ahmad S.',
       assignedTo: 'Sarah Reporter',
       priority: 'Medium',
-      location: 'Bandung',
+      location: 'Bandar Lampung',
       description: 'Antrian panjang dan pelayanan yang lambat di RSUD Bandung.'
     },
     {
@@ -40,7 +40,7 @@ const ReportManagement = ({ userRole }) => {
       reporter: 'Maria T.',
       assignedTo: null,
       priority: 'Medium',
-      location: 'Surabaya',
+      location: 'Lampung Barat',
       description: 'SD Negeri 123 kekurangan 5 guru untuk tahun ajaran baru.'
     }
   ];
