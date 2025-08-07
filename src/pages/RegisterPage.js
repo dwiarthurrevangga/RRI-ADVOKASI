@@ -6,6 +6,7 @@ const RegisterPage = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     fullName: '',
+    birthDate: '',
     email: '',
     phone: '',
     address: '',
@@ -14,6 +15,20 @@ const RegisterPage = () => {
   });
   const [errors, setErrors] = useState({});
   const [isLoading, setIsLoading] = useState(false);
+
+  // Function to calculate age from birth date
+  const calculateAge = (birthDate) => {
+    const today = new Date();
+    const birth = new Date(birthDate);
+    let age = today.getFullYear() - birth.getFullYear();
+    const monthDiff = today.getMonth() - birth.getMonth();
+    
+    if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birth.getDate())) {
+      age--;
+    }
+    
+    return age;
+  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -35,6 +50,22 @@ const RegisterPage = () => {
 
     if (!formData.fullName.trim()) {
       newErrors.fullName = 'Nama lengkap wajib diisi';
+    }
+
+    if (!formData.birthDate.trim()) {
+      newErrors.birthDate = 'Tanggal lahir wajib diisi';
+    } else {
+      const age = calculateAge(formData.birthDate);
+      const birthDate = new Date(formData.birthDate);
+      const today = new Date();
+      
+      if (birthDate > today) {
+        newErrors.birthDate = 'Tanggal lahir tidak boleh di masa depan';
+      } else if (age < 17) {
+        newErrors.birthDate = 'Anda harus berusia minimal 17 tahun untuk mendaftar';
+      } else if (age > 100) {
+        newErrors.birthDate = 'Tanggal lahir tidak valid';
+      }
     }
 
     if (!formData.email.trim()) {
@@ -84,6 +115,8 @@ const RegisterPage = () => {
       const userData = {
         id: Date.now(),
         fullName: formData.fullName,
+        birthDate: formData.birthDate,
+        age: calculateAge(formData.birthDate),
         email: formData.email,
         phone: formData.phone,
         address: formData.address,
@@ -127,6 +160,27 @@ const RegisterPage = () => {
             </div>
 
             <div className="form-group">
+              <label htmlFor="birthDate">Tanggal Lahir *</label>
+              <input
+                type="date"
+                id="birthDate"
+                name="birthDate"
+                value={formData.birthDate}
+                onChange={handleChange}
+                className={errors.birthDate ? 'error' : ''}
+                max={new Date().toISOString().split('T')[0]}
+              />
+              {errors.birthDate && <span className="error-message">{errors.birthDate}</span>}
+              {formData.birthDate && (
+                <small className="age-display">
+                  Usia: {calculateAge(formData.birthDate)} tahun
+                </small>
+              )}
+            </div>
+          </div>
+
+          <div className="form-row">
+            <div className="form-group">
               <label htmlFor="email">Email *</label>
               <input
                 type="email"
@@ -139,9 +193,7 @@ const RegisterPage = () => {
               />
               {errors.email && <span className="error-message">{errors.email}</span>}
             </div>
-          </div>
 
-          <div className="form-row single">
             <div className="form-group">
               <label htmlFor="phone">Nomor Telepon *</label>
               <input

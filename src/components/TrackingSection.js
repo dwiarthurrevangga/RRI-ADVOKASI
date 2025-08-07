@@ -175,12 +175,6 @@ const TrackingSection = () => {
                   ))}
                 </div>
               </div>
-
-              <div className="report-actions">
-                <button className="action-btn primary">📞 Hubungi Reporter</button>
-                <button className="action-btn secondary">📝 Tambah Informasi</button>
-                <button className="action-btn secondary">📧 Berlangganan Update</button>
-              </div>
             </div>
           )}
         </div>

@@ -272,43 +272,6 @@
   font-size: 0.9rem;
 }
 
-.report-actions {
-  display: flex;
-  gap: 1rem;
-  flex-wrap: wrap;
-}
-
-.action-btn {
-  padding: 0.8rem 1.5rem;
-  border: none;
-  border-radius: 20px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s;
-  flex: 1;
-  min-width: 150px;
-}
-
-.action-btn.primary {
-  background: linear-gradient(135deg, #27ae60, #229954);
-  color: white;
-}
-
-.action-btn.primary:hover {
-  background: linear-gradient(135deg, #229954, #1e8449);
-  transform: translateY(-2px);
-}
-
-.action-btn.secondary {
-  background: #ecf0f1;
-  color: #2c3e50;
-  border: 1px solid #bdc3c7;
-}
-
-.action-btn.secondary:hover {
-  background: #bdc3c7;
-}
-
 .status-guide {
   background: #f8f9fa;
   padding: 2rem;
@@ -390,14 +353,6 @@
   .report-meta {
     flex-direction: column;
     gap: 0.5rem;
-  }
-  
-  .report-actions {
-    flex-direction: column;
-  }
-  
-  .action-btn {
-    min-width: auto;
   }
   
   .status-grid {

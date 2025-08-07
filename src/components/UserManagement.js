@@ -5,43 +5,90 @@ const UserManagement = () => {
   const [users, setUsers] = useState([
     {
       id: 1,
-      username: 'john_reporter',
-      name: 'John Smith',
+      username: 'budi_reporter',
+      name: 'Budi Santoso',
       role: 'reporter',
-      email: 'john@rri.co.id',
-      satker: 'RRI Jakarta',
+      email: 'budi.santoso@rri.co.id',
+      satker: 'RRI Lampung',
       status: 'active',
-      lastLogin: '2025-08-04 10:30'
+      lastLogin: '2025-08-07 08:30',
+      demoPassword: 'reporter123'
     },
     {
       id: 2,
-      username: 'sarah_reporter',
-      name: 'Sarah Johnson',
+      username: 'sari_reporter',
+      name: 'Sari Wulandari',
       role: 'reporter',
-      email: 'sarah@rri.co.id',
-      satker: 'RRI Bandung',
+      email: 'sari.wulandari@rri.co.id',
+      satker: 'RRI Bandar Lampung',
       status: 'active',
-      lastLogin: '2025-08-03 15:45'
+      lastLogin: '2025-08-06 16:45',
+      demoPassword: 'reporter123'
     },
     {
       id: 3,
-      username: 'mike_redaktur',
-      name: 'Michael Brown',
+      username: 'ahmad_redaktur',
+      name: 'Ahmad Fauzi',
       role: 'redaktur',
-      email: 'mike@rri.co.id',
-      satker: 'RRI Pusat',
+      email: 'ahmad.fauzi@rri.co.id',
+      satker: 'RRI Lampung',
       status: 'active',
-      lastLogin: '2025-08-04 09:15'
+      lastLogin: '2025-08-07 07:15',
+      demoPassword: 'redaktur123'
     },
     {
       id: 4,
-      username: 'admin_system',
-      name: 'System Administrator',
+      username: 'indra_admin',
+      name: 'Indra Permana',
       role: 'admin',
-      email: 'admin@rri.co.id',
-      satker: 'RRI Pusat',
+      email: 'indra.permana@rri.co.id',
+      satker: 'RRI Lampung',
       status: 'active',
-      lastLogin: '2025-08-04 08:00'
+      lastLogin: '2025-08-07 06:00',
+      demoPassword: 'admin123'
+    },
+    {
+      id: 5,
+      username: 'rina_reporter',
+      name: 'Rina Handayani',
+      role: 'reporter',
+      email: 'rina.handayani@rri.co.id',
+      satker: 'RRI Metro',
+      status: 'active',
+      lastLogin: '2025-08-05 14:20',
+      demoPassword: 'reporter123'
+    },
+    {
+      id: 6,
+      username: 'dedi_reporter',
+      name: 'Dedi Supriyadi',
+      role: 'reporter',
+      email: 'dedi.supriyadi@rri.co.id',
+      satker: 'RRI Pringsewu',
+      status: 'inactive',
+      lastLogin: '2025-08-01 10:30',
+      demoPassword: 'reporter123'
+    },
+    {
+      id: 7,
+      username: 'maya_redaktur',
+      name: 'Maya Sari Dewi',
+      role: 'redaktur',
+      email: 'maya.dewi@rri.co.id',
+      satker: 'RRI Bandar Lampung',
+      status: 'active',
+      lastLogin: '2025-08-06 18:45'
+    },
+    {
+      id: 8,
+      username: 'warga_demo',
+      name: 'Andi Wijaya',
+      role: 'warga',
+      email: 'andi.wijaya@gmail.com',
+      satker: 'Masyarakat Umum',
+      status: 'active',
+      lastLogin: '2025-08-06 20:15',
+      demoPassword: 'warga123'
     }
   ]);
 
@@ -57,14 +104,15 @@ const UserManagement = () => {
   });
 
   const satkerOptions = [
-    'RRI Pusat',
-    'RRI Jakarta',
-    'RRI Bandung',
-    'RRI Surabaya',
-    'RRI Medan',
-    'RRI Makassar',
-    'RRI Denpasar',
-    'RRI Yogyakarta'
+    'RRI Lampung',
+    'RRI Bandar Lampung',
+    'RRI Metro',
+    'RRI Pringsewu',
+    'RRI Tulang Bawang',
+    'RRI Way Kanan',
+    'RRI Tanggamus',
+    'RRI Lampung Timur',
+    'Masyarakat Umum'
   ];
 
   const handleInputChange = (e) => {
@@ -146,7 +194,8 @@ const UserManagement = () => {
     const colors = {
       'admin': '#e74c3c',
       'redaktur': '#9b59b6',
-      'reporter': '#3498db'
+      'reporter': '#3498db',
+      'warga': '#27ae60'
     };
     return colors[role] || '#95a5a6';
   };
@@ -155,7 +204,8 @@ const UserManagement = () => {
     const labels = {
       'admin': 'Administrator',
       'redaktur': 'Redaktur',
-      'reporter': 'Reporter'
+      'reporter': 'Reporter',
+      'warga': 'Warga'
     };
     return labels[role] || role;
   };
@@ -247,6 +297,7 @@ const UserManagement = () => {
                       <option value="reporter">Reporter</option>
                       <option value="redaktur">Redaktur</option>
                       <option value="admin">Administrator</option>
+                      <option value="warga">Warga</option>
                     </select>
                   </div>
 

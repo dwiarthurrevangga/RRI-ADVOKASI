@@ -106,20 +106,6 @@ const NewsSection = () => {
           </div>
         </div>
 
-        <div className="news-newsletter">
-          <div className="newsletter-content">
-            <div className="newsletter-icon">📧</div>
-            <div className="newsletter-text">
-              <h3>Newsletter RRI Advokasi</h3>
-              <p>Dapatkan update mingguan tentang dampak laporan dan perkembangan isu publik langsung di email Anda</p>
-            </div>
-            <div className="newsletter-form">
-              <input type="email" placeholder="Masukkan email Anda" />
-              <button type="submit">Berlangganan</button>
-            </div>
-          </div>
-        </div>
-
         <div className="news-archive">
           <h3>Arsip Berita</h3>
           <div className="archive-links">

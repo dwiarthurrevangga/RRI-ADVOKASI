@@ -90,6 +90,14 @@
   font-weight: 500;
 }
 
+.age-display {
+  color: #27ae60;
+  font-size: 0.9rem;
+  margin-top: 0.5rem;
+  font-weight: 500;
+  display: block;
+}
+
 .form-group textarea {
   resize: vertical;
   min-height: 80px;

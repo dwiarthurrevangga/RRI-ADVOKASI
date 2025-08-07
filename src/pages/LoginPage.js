@@ -25,8 +25,29 @@ const LoginPage = () => {
 
     // Simulate authentication
     setTimeout(() => {
-      // Check for citizen login (from localStorage)
+      // Check for citizen login (from localStorage or demo data)
       if (formData.role === 'citizen') {
+        // Check demo account first
+        if (formData.username === 'andi.wijaya@gmail.com' && formData.password === 'warga123') {
+          const demoUserData = {
+            id: 999,
+            fullName: 'Andi Wijaya',
+            email: 'andi.wijaya@gmail.com',
+            phone: '081234567890',
+            address: 'Jl. Demo No. 123, Bandar Lampung',
+            birthDate: '1995-05-15',
+            age: 30,
+            registeredAt: new Date().toISOString(),
+            role: 'citizen'
+          };
+          localStorage.setItem('userData', JSON.stringify(demoUserData));
+          localStorage.setItem('userToken', 'citizen-token-' + Date.now());
+          navigate('/dashboard-warga');
+          setLoading(false);
+          return;
+        }
+        
+        // Check registered users from localStorage
         const storedUser = localStorage.getItem('userData');
         if (storedUser) {
           const userData = JSON.parse(storedUser);
@@ -38,25 +59,34 @@ const LoginPage = () => {
             return;
           }
         }
-        alert('Email atau password salah. Jika belum punya akun, silakan daftar terlebih dahulu.');
+        alert('Email atau password salah. Gunakan akun demo: andi.wijaya@gmail.com / warga123 atau daftar akun baru.');
         setLoading(false);
         return;
       }
 
       // Mock authentication logic for staff
-      if (formData.username && formData.password) {
+      const validCredentials = {
+        'budi_reporter': { password: 'reporter123', role: 'reporter', name: 'Budi Santoso' },
+        'sari_reporter': { password: 'reporter123', role: 'reporter', name: 'Sari Wulandari' },
+        'rina_reporter': { password: 'reporter123', role: 'reporter', name: 'Rina Handayani' },
+        'ahmad_redaktur': { password: 'redaktur123', role: 'redaktur', name: 'Ahmad Fauzi' },
+        'maya_redaktur': { password: 'redaktur123', role: 'redaktur', name: 'Maya Sari Dewi' },
+        'indra_admin': { password: 'admin123', role: 'admin', name: 'Indra Permana' }
+      };
+
+      const credential = validCredentials[formData.username];
+      if (credential && credential.password === formData.password && credential.role === formData.role) {
         const userData = {
           username: formData.username,
           role: formData.role,
-          name: formData.role === 'admin' ? 'Administrator' : 
-                formData.role === 'redaktur' ? 'Redaktur' : 'Reporter',
+          name: credential.name,
           isAuthenticated: true
         };
         
         localStorage.setItem('user', JSON.stringify(userData));
         navigate('/admin');
       } else {
-        alert('Username dan password harus diisi');
+        alert('Username, password, atau role tidak sesuai. Periksa kembali credential Anda.');
       }
       setLoading(false);
     }, 1000);
@@ -124,16 +154,16 @@ const LoginPage = () => {
           <h4>Demo Credentials:</h4>
           <div className="demo-accounts">
             <div className="demo-account">
-              <strong>Warga:</strong> Daftar akun baru atau gunakan email terdaftar
+              <strong>Warga:</strong> andi.wijaya@gmail.com / warga123
             </div>
             <div className="demo-account">
-              <strong>Reporter:</strong> reporter / password123
+              <strong>Reporter:</strong> budi_reporter / reporter123
             </div>
             <div className="demo-account">
-              <strong>Redaktur:</strong> redaktur / password123
+              <strong>Redaktur:</strong> ahmad_redaktur / redaktur123
             </div>
             <div className="demo-account">
-              <strong>Admin:</strong> admin / password123
+              <strong>Admin:</strong> indra_admin / admin123
             </div>
           </div>
         </div>
