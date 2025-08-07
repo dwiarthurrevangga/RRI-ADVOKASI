@@ -67,10 +67,10 @@ const Header = () => {
           ) : (
             <>
               <button className="register-btn" onClick={() => navigate('/daftar')}>
-                📝 Daftar
+                Daftar
               </button>
               <button className="login-btn" onClick={handleLogin}>
-                🔐 Login
+                Login
               </button>
             </>
           )}
