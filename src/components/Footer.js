@@ -22,17 +22,9 @@ const Footer = () => {
             untuk menciptakan perubahan positif melalui pelaporan isu-isu publik yang dapat dipertanggungjawabkan.
           </p>
           <div className="footer-social">
-            <a href="#" className="social-link" title="Facebook">
-              <span className="social-icon">📘</span>
-              Facebook
-            </a>
             <a href="#" className="social-link" title="Instagram">
               <span className="social-icon">📷</span>
               Instagram
-            </a>
-            <a href="#" className="social-link" title="Twitter">
-              <span className="social-icon">🐦</span>
-              Twitter  
             </a>
             <a href="#" className="social-link" title="YouTube">
               <span className="social-icon">📺</span>
