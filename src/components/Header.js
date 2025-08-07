@@ -39,6 +39,7 @@ const Header = () => {
     <header className="header">
       <div className="header-container">
         <div className="logo-section">
+          <img src="/logo-rri.svg" alt="RRI Logo" className="logo-rri" />
           <div className="logo-text">
             <h1>HALO RRI</h1>
             <p>Platform Pelaporan Publik RRI</p>
