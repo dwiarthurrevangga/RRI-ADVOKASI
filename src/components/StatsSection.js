@@ -1,44 +1,226 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './StatsSection.css';
+import { REPORT_CATEGORIES } from '../constants/categories';
 
 const StatsSection = () => {
+  const [loading, setLoading] = useState(true);
+  const [stats, setStats] = useState(null);
+  const [error, setError] = useState(null);
+  const [lastUpdated, setLastUpdated] = useState(null);
+  const [loadingProgress, setLoadingProgress] = useState(0);
+  
   const currentYear = new Date().getFullYear();
   const currentMonth = new Date().toLocaleDateString('id-ID', { month: 'long' });
 
-  const stats = {
-    total: {
-      reports: 5247,
-      processed: 3891,
-      published: 2156,
-      categories: 10
-    },
-    monthly: {
-      reports: 287,
-      processed: 201,
-      published: 145,
-      avgTime: 2.3
-    },
-    categories: [
-      { name: 'Infrastruktur', count: 1247, percentage: 23.8, color: '#3498db' },
-      { name: 'Layanan Kesehatan', count: 892, percentage: 17.0, color: '#e74c3c' },
-      { name: 'Pendidikan', count: 756, percentage: 14.4, color: '#f39c12' },
-      { name: 'Sosial', count: 634, percentage: 12.1, color: '#9b59b6' },
-      { name: 'Lingkungan', count: 523, percentage: 10.0, color: '#27ae60' },
-      { name: 'Transportasi', count: 445, percentage: 8.5, color: '#34495e' },
-      { name: 'Pemerintahan', count: 289, percentage: 5.5, color: '#e67e22' },
-      { name: 'Ekonomi', count: 234, percentage: 4.5, color: '#1abc9c' },
-      { name: 'Keamanan', count: 156, percentage: 3.0, color: '#95a5a6' },
-      { name: 'Lainnya', count: 71, percentage: 1.4, color: '#7f8c8d' }
-    ],
-    regions: [
-      { name: 'Kedaton', count: 1247, percentage: 23.8 },
-      { name: 'Pahoman', count: 892, percentage: 17.0 },
-      { name: 'Way Halim', count: 756, percentage: 14.4 },
-      { name: 'Gunung Terang', count: 634, percentage: 12.1 },
-      { name: 'Sukarame', count: 523, percentage: 10.0 },
-      { name: 'Lainnya', count: 1195, percentage: 22.8 }
-    ]
+  // Simulate loading statistics data
+  useEffect(() => {
+    const loadStats = async () => {
+      try {
+        setLoading(true);
+        setError(null);
+        setLoadingProgress(0);
+        
+        // Simulate loading progress
+        const progressInterval = setInterval(() => {
+          setLoadingProgress(prev => {
+            if (prev >= 90) {
+              clearInterval(progressInterval);
+              return 90;
+            }
+            return prev + Math.random() * 20;
+          });
+        }, 100);
+        
+        // Simulate API call delay
+        await new Promise(resolve => setTimeout(resolve, 1500));
+        
+        // Complete progress
+        setLoadingProgress(100);
+        clearInterval(progressInterval);
+        
+        // Generate category data using the constants to ensure consistency
+        const categoryColors = ['#3498db', '#e74c3c', '#f39c12', '#9b59b6', '#27ae60', '#34495e', '#e67e22', '#1abc9c', '#95a5a6', '#7f8c8d'];
+        const categoryCounts = [1247, 892, 756, 634, 523, 445, 289, 234, 156, 71];
+        const totalReports = categoryCounts.reduce((sum, count) => sum + count, 0);
+        
+        const categoryStats = REPORT_CATEGORIES.map((categoryName, index) => ({
+          name: categoryName,
+          count: categoryCounts[index],
+          percentage: ((categoryCounts[index] / totalReports) * 100).toFixed(1),
+          color: categoryColors[index]
+        }));
+
+        const statsData = {
+          total: {
+            reports: 5247,
+            processed: 3891,
+            published: 2156,
+            categories: REPORT_CATEGORIES.length
+          },
+          monthly: {
+            reports: 287,
+            processed: 201,
+            published: 145,
+            avgTime: 2.3
+          },
+          categories: categoryStats,
+          regions: [
+            { name: 'Kedaton', count: 1247, percentage: 23.8 },
+            { name: 'Pahoman', count: 892, percentage: 17.0 },
+            { name: 'Way Halim', count: 756, percentage: 14.4 },
+            { name: 'Gunung Terang', count: 634, percentage: 12.1 },
+            { name: 'Sukarame', count: 523, percentage: 10.0 },
+            { name: 'Lainnya', count: 1195, percentage: 22.8 }
+          ]
+        };
+        
+        setStats(statsData);
+        setLastUpdated(new Date());
+      } catch (err) {
+        setError('Gagal memuat data statistik. Silakan coba lagi.');
+        console.error('Error loading stats:', err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadStats();
+  }, []);
+
+  const handleRefresh = () => {
+    // Re-load stats when refresh button is clicked
+    setStats(null);
+    setLoading(true);
+    setError(null);
+    
+    // Simulate refresh delay
+    setTimeout(() => {
+      const statsData = {
+        total: {
+          reports: 5247 + Math.floor(Math.random() * 100),
+          processed: 3891 + Math.floor(Math.random() * 50),
+          published: 2156 + Math.floor(Math.random() * 25),
+          categories: REPORT_CATEGORIES.length
+        },
+        monthly: {
+          reports: 287 + Math.floor(Math.random() * 20),
+          processed: 201 + Math.floor(Math.random() * 15),
+          published: 145 + Math.floor(Math.random() * 10),
+          avgTime: (2.3 + Math.random() * 0.5).toFixed(1)
+        },
+        categories: REPORT_CATEGORIES.map((categoryName, index) => {
+          const baseCount = [1247, 892, 756, 634, 523, 445, 289, 234, 156, 71][index];
+          const count = baseCount + Math.floor(Math.random() * 50);
+          const total = 5247 + Math.floor(Math.random() * 100);
+          return {
+            name: categoryName,
+            count: count,
+            percentage: ((count / total) * 100).toFixed(1),
+            color: ['#3498db', '#e74c3c', '#f39c12', '#9b59b6', '#27ae60', '#34495e', '#e67e22', '#1abc9c', '#95a5a6', '#7f8c8d'][index]
+          };
+        }),
+        regions: [
+          { name: 'Kedaton', count: 1247 + Math.floor(Math.random() * 50), percentage: 23.8 },
+          { name: 'Pahoman', count: 892 + Math.floor(Math.random() * 40), percentage: 17.0 },
+          { name: 'Way Halim', count: 756 + Math.floor(Math.random() * 30), percentage: 14.4 },
+          { name: 'Gunung Terang', count: 634 + Math.floor(Math.random() * 25), percentage: 12.1 },
+          { name: 'Sukarame', count: 523 + Math.floor(Math.random() * 20), percentage: 10.0 },
+          { name: 'Lainnya', count: 1195 + Math.floor(Math.random() * 60), percentage: 22.8 }
+        ]
+      };
+      setStats(statsData);
+      setLastUpdated(new Date());
+      setLoading(false);
+    }, 1000);
   };
+
+  if (error) {
+    return (
+      <section className="stats-section" id="statistik">
+        <div className="container">
+          <div className="section-header">
+            <h2>Statistik & Laporan</h2>
+            <p>Data transparansi penanganan laporan masyarakat oleh RRI</p>
+          </div>
+          
+          <div className="error-state">
+            <div className="error-icon">⚠️</div>
+            <h3>Gagal Memuat Statistik</h3>
+            <p>{error}</p>
+            <button onClick={handleRefresh} className="refresh-btn">
+              🔄 Coba Lagi
+            </button>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  if (loading) {
+    return (
+      <section className="stats-section" id="statistik">
+        <div className="container">
+          <div className="section-header">
+            <h2>Statistik & Laporan</h2>
+            <p>Data transparansi penanganan laporan masyarakat oleh RRI</p>
+          </div>
+          
+          <div className="loading-state">
+            <div className="loading-spinner">
+              <div className="spinner"></div>
+            </div>
+            <h3>Memuat Data Statistik...</h3>
+            <p>Mengambil data terbaru dari server</p>
+            <div className="progress-bar">
+              <div 
+                className="progress-fill" 
+                style={{ width: `${loadingProgress}%` }}
+              ></div>
+            </div>
+            <div className="progress-text">
+              {Math.round(loadingProgress)}% selesai
+            </div>
+          </div>
+          
+          {/* Loading skeleton */}
+          <div className="overview-stats loading">
+            <div className="stat-card skeleton">
+              <div className="skeleton-icon"></div>
+              <div className="skeleton-content">
+                <div className="skeleton-text large"></div>
+                <div className="skeleton-text medium"></div>
+                <div className="skeleton-text small"></div>
+              </div>
+            </div>
+            <div className="stat-card skeleton">
+              <div className="skeleton-icon"></div>
+              <div className="skeleton-content">
+                <div className="skeleton-text large"></div>
+                <div className="skeleton-text medium"></div>
+                <div className="skeleton-text small"></div>
+              </div>
+            </div>
+            <div className="stat-card skeleton">
+              <div className="skeleton-icon"></div>
+              <div className="skeleton-content">
+                <div className="skeleton-text large"></div>
+                <div className="skeleton-text medium"></div>
+                <div className="skeleton-text small"></div>
+              </div>
+            </div>
+            <div className="stat-card skeleton">
+              <div className="skeleton-icon"></div>
+              <div className="skeleton-content">
+                <div className="skeleton-text large"></div>
+                <div className="skeleton-text medium"></div>
+                <div className="skeleton-text small"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section className="stats-section" id="statistik">
@@ -46,10 +228,18 @@ const StatsSection = () => {
         <div className="section-header">
           <h2>Statistik & Laporan</h2>
           <p>Data transparansi penanganan laporan masyarakat oleh RRI</p>
+          <button onClick={handleRefresh} className="refresh-btn" title="Perbarui Data">
+            🔄 Perbarui Data
+          </button>
+          {lastUpdated && (
+            <div className="last-updated">
+              Terakhir diperbarui: {lastUpdated.toLocaleString('id-ID')}
+            </div>
+          )}
         </div>
 
         {/* Overview Stats */}
-        <div className="overview-stats">
+        <div className={`overview-stats ${loading ? 'loading' : 'loaded'}`}>
           <div className="stat-card primary">
             <div className="stat-icon">📊</div>
             <div className="stat-content">

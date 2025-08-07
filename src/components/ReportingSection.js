@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './ReportingSection.css';
+import { REPORT_CATEGORIES } from '../constants/categories';
 
 const ReportingSection = () => {
   const [formData, setFormData] = useState({
@@ -10,19 +11,6 @@ const ReportingSection = () => {
     anonymous: false,
     files: []
   });
-
-  const categories = [
-    'Infrastruktur',
-    'Layanan Kesehatan',
-    'Pendidikan',
-    'Sosial',
-    'Lingkungan',
-    'Transportasi',
-    'Pemerintahan',
-    'Ekonomi',
-    'Keamanan',
-    'Lainnya'
-  ];
 
   const handleInputChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -114,7 +102,7 @@ const ReportingSection = () => {
                   required
                 >
                   <option value="">Pilih Kategori</option>
-                  {categories.map(cat => (
+                  {REPORT_CATEGORIES.map(cat => (
                     <option key={cat} value={cat}>{cat}</option>
                   ))}
                 </select>

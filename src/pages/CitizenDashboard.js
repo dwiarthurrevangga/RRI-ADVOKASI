@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './CitizenDashboard.css';
+import { REPORT_CATEGORIES } from '../constants/categories';
 
 const CitizenDashboard = () => {
   const navigate = useNavigate();

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './ReportManagement.css';
+import { REPORT_CATEGORIES } from '../constants/categories';
 
 const ReportManagement = ({ userRole }) => {
   const [selectedStatus, setSelectedStatus] = useState('all');
@@ -42,6 +43,90 @@ const ReportManagement = ({ userRole }) => {
       priority: 'Medium',
       location: 'Lampung Barat',
       description: 'SD Negeri 123 kekurangan 5 guru untuk tahun ajaran baru.'
+    },
+    {
+      id: 'RPT1723456792',
+      title: 'Angkutan Umum Tidak Tertib',
+      category: 'Transportasi',
+      status: 'Valid',
+      date: '2025-08-02',
+      reporter: 'Budi H.',
+      assignedTo: 'Mike Reporter',
+      priority: 'Medium',
+      location: 'Bandar Lampung',
+      description: 'Angkot tidak menggunakan trayek resmi dan sembarangan menurunkan penumpang.'
+    },
+    {
+      id: 'RPT1723456793',
+      title: 'Pencemaran Sungai Way Sekampung',
+      category: 'Lingkungan',
+      status: 'Dalam Proses Validasi',
+      date: '2025-08-04',
+      reporter: 'Siti R.',
+      assignedTo: null,
+      priority: 'High',
+      location: 'Lampung Tengah',
+      description: 'Limbah pabrik mencemari sungai dan menyebabkan ikan mati massal.'
+    },
+    {
+      id: 'RPT1723456794',
+      title: 'Bantuan Sosial Tidak Tepat Sasaran',
+      category: 'Sosial',
+      status: 'Diterima',
+      date: '2025-08-05',
+      reporter: 'Anonim',
+      assignedTo: null,
+      priority: 'Medium',
+      location: 'Lampung Timur',
+      description: 'Penyaluran bantuan PKH tidak sesuai dengan data penerima yang seharusnya.'
+    },
+    {
+      id: 'RPT1723456795',
+      title: 'Pungli di Kantor Kelurahan',
+      category: 'Pemerintahan',
+      status: 'Diliput',
+      date: '2025-07-30',
+      reporter: 'Rahman P.',
+      assignedTo: 'Lisa Reporter',
+      priority: 'High',
+      location: 'Metro',
+      description: 'Petugas kelurahan memungut biaya tidak resmi untuk pengurusan surat.'
+    },
+    {
+      id: 'RPT1723456796',
+      title: 'Pasar Tradisional Sepi Pembeli',
+      category: 'Ekonomi',
+      status: 'Valid',
+      date: '2025-08-01',
+      reporter: 'Ibu Wati',
+      assignedTo: 'Tom Reporter',
+      priority: 'Low',
+      location: 'Lampung Utara',
+      description: 'Pedagang pasar mengeluh sepi pembeli karena masyarakat beralih ke supermarket.'
+    },
+    {
+      id: 'RPT1723456797',
+      title: 'Rawan Pencurian di Perumahan',
+      category: 'Keamanan',
+      status: 'Diterima',
+      date: '2025-08-06',
+      reporter: 'Anonim',
+      assignedTo: null,
+      priority: 'High',
+      location: 'Bandar Lampung',
+      description: 'Meningkatnya kasus pencurian sepeda motor di kompleks perumahan.'
+    },
+    {
+      id: 'RPT1723456798',
+      title: 'Pohon Tumbang Menghalangi Jalan',
+      category: 'Lainnya',
+      status: 'Selesai',
+      date: '2025-07-25',
+      reporter: 'Pak Joko',
+      assignedTo: 'Alex Reporter',
+      priority: 'Medium',
+      location: 'Way Kanan',
+      description: 'Pohon besar tumbang akibat angin kencang dan menghalangi akses jalan utama.'
     }
   ];
 
@@ -121,11 +206,9 @@ const ReportManagement = ({ userRole }) => {
               className="filter-select"
             >
               <option value="all">Semua Kategori</option>
-              <option value="Infrastruktur">Infrastruktur</option>
-              <option value="Layanan Kesehatan">Layanan Kesehatan</option>
-              <option value="Pendidikan">Pendidikan</option>
-              <option value="Sosial">Sosial</option>
-              <option value="Lingkungan">Lingkungan</option>
+              {REPORT_CATEGORIES.map(category => (
+                <option key={category} value={category}>{category}</option>
+              ))}
             </select>
           </div>
         </div>

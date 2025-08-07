@@ -1,7 +1,10 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import './Footer.css';
 
 const Footer = () => {
+  const navigate = useNavigate();
+
   return (
     <footer className="footer">
       <div className="footer-content">
@@ -87,7 +90,7 @@ const Footer = () => {
               Selesai: <strong>5</strong>
             </p>
           </div>
-          <button className="cta-button" onClick={() => window.location.href = '/lapor'}>
+          <button className="cta-button" onClick={() => navigate('/laporan')}>
             📝 Buat Laporan Sekarang
           </button>
         </div>
