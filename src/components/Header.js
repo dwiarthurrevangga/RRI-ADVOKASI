@@ -5,6 +5,8 @@ import './Header.css';
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [user, setUser] = useState(null);
+  const [isHeaderVisible, setIsHeaderVisible] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -15,6 +17,32 @@ const Header = () => {
       setUser(JSON.parse(userData));
     }
   }, []);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      
+      // Hanya hide header jika scroll lebih dari 100px
+      if (currentScrollY < 100) {
+        setIsHeaderVisible(true);
+      } else {
+        // Jika scroll ke bawah, hide header
+        if (currentScrollY > lastScrollY) {
+          setIsHeaderVisible(false);
+        } 
+        // Jika scroll ke atas, show header
+        else {
+          setIsHeaderVisible(true);
+        }
+      }
+      
+      setLastScrollY(currentScrollY);
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [lastScrollY]);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -28,6 +56,10 @@ const Header = () => {
     navigate('/dashboard-warga');
   };
 
+  const handleProfile = () => {
+    navigate('/profil');
+  };
+
   const handleLogout = () => {
     localStorage.removeItem('userData');
     localStorage.removeItem('userToken');
@@ -36,7 +68,7 @@ const Header = () => {
   };
 
   return (
-    <header className="header">
+    <header className={`header ${isHeaderVisible ? 'header-visible' : 'header-hidden'}`}>
       <div className="header-container">
         <div className="logo-section">
           <img src="/logo-rri.svg" alt="RRI Logo" className="logo-rri" />
@@ -64,7 +96,7 @@ const Header = () => {
         <div className="header-actions">
           {user ? (
             <div className="user-menu">
-              <button className="user-btn" onClick={handleDashboard}>
+              <button className="user-btn" onClick={handleProfile}>
                 👤 {user.fullName}
               </button>
               <button className="logout-btn" onClick={handleLogout}>

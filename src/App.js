@@ -9,6 +9,7 @@ import TrackingPage from './pages/TrackingPage';
 import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
 import CitizenDashboard from './pages/CitizenDashboard';
+import ProfilePage from './pages/ProfilePage';
 import AdminDashboard from './pages/AdminDashboard';
 import ProtectedRoute from './components/ProtectedRoute';
 
@@ -25,6 +26,7 @@ function App() {
             <Route path="/login" element={<LoginPage />} />
             <Route path="/daftar" element={<RegisterPage />} />
             <Route path="/dashboard-warga" element={<CitizenDashboard />} />
+            <Route path="/profil" element={<ProfilePage />} />
             <Route 
               path="/admin/*" 
               element={

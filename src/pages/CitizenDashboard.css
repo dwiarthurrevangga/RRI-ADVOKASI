@@ -1,13 +1,13 @@
 .citizen-dashboard {
   min-height: 100vh;
   background: #f8f9fa;
-  margin-top: 80px;
+  margin-top: 120px;
 }
 
 .dashboard-header {
   background: linear-gradient(135deg, #2c3e50, #34495e);
   color: white;
-  padding: 2rem 0;
+  padding: 1rem 0;
 }
 
 .header-content {
@@ -51,11 +51,12 @@
   background: #e74c3c;
   color: white;
   border: none;
-  padding: 0.8rem 1.5rem;
-  border-radius: 8px;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s;
+  font-size: 0.85rem;
 }
 
 .logout-btn:hover {
@@ -166,14 +167,17 @@
 .report-header {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
   margin-bottom: 0.5rem;
+  gap: 1rem;
 }
 
 .report-header h3 {
   margin: 0;
   font-size: 1.1rem;
   color: #2c3e50;
+  flex: 1;
+  line-height: 1.3;
 }
 
 .report-date,
@@ -264,6 +268,9 @@
   font-size: 0.8rem;
   font-weight: bold;
   color: white;
+  white-space: nowrap;
+  flex-shrink: 0;
+  min-width: fit-content;
 }
 
 .status-completed {
@@ -585,7 +592,7 @@
 /* Mobile Responsive */
 @media (max-width: 768px) {
   .citizen-dashboard {
-    margin-top: 70px;
+    margin-top: 100px;
   }
   
   .header-content {
@@ -635,11 +642,21 @@
   .container {
     padding: 0 1rem;
   }
+  
+  .report-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+  
+  .report-header h3 {
+    font-size: 1rem;
+  }
 }
 
 @media (max-width: 480px) {
   .citizen-dashboard {
-    margin-top: 60px;
+    margin-top: 90px;
   }
   
   .dashboard-header {
@@ -664,5 +681,16 @@
   
   .container {
     padding: 0 0.5rem;
+  }
+  
+  .report-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+  
+  .status-badge {
+    font-size: 0.75rem;
+    padding: 0.25rem 0.6rem;
   }
 }

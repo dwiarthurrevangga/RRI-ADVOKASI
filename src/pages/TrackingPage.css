@@ -1,4 +1,10 @@
 .page-header {
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: white;
+  padding: 6rem 0 4rem;
+  margin-top: 140px;
+  text-align: center;
+}eader {
   background: linear-gradient(135deg, #3498db, #2980b9);
   color: white;
   padding: 6rem 0 4rem;
