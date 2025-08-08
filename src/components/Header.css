@@ -101,39 +101,6 @@
   transform: translateY(-2px);
 }
 
-.register-btn {
-  background: #f39c12;
-  color: white;
-  border: none;
-  padding: 0.5rem 1rem;
-  border-radius: 20px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: all 0.3s;
-  font-size: 0.9rem;
-}
-
-.register-btn:hover {
-  background: #e67e22;
-  transform: translateY(-2px);
-}
-
-.login-btn {
-  background: #27ae60;
-  color: white;
-  border: none;
-  padding: 0.5rem 1rem;
-  border-radius: 20px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: all 0.3s;
-}
-
-.login-btn:hover {
-  background: #229954;
-  transform: translateY(-2px);
-}
-
 .logout-btn {
   background: #e74c3c;
   color: white;
@@ -212,9 +179,7 @@
     gap: 0.3rem;
   }
   
-  .user-btn,
-  .register-btn,
-  .login-btn {
+  .user-btn {
     padding: 0.4rem 0.8rem;
     font-size: 0.8rem;
   }

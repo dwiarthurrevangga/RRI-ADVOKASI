@@ -52,6 +52,12 @@ const Header = () => {
             <li><Link to="/laporan">Buat Laporan</Link></li>
             <li><Link to="/pelacakan">Lacak Laporan</Link></li>
             <li><a href="#statistik">Statistik</a></li>
+            {!user && (
+              <>
+                <li><Link to="/daftar">Daftar</Link></li>
+                <li><Link to="/login">Login</Link></li>
+              </>
+            )}
           </ul>
         </nav>
         
@@ -65,16 +71,7 @@ const Header = () => {
                 Keluar
               </button>
             </div>
-          ) : (
-            <>
-              <button className="register-btn" onClick={() => navigate('/daftar')}>
-                Daftar
-              </button>
-              <button className="login-btn" onClick={handleLogin}>
-                Login
-              </button>
-            </>
-          )}
+          ) : null}
           <button className="menu-toggle" onClick={toggleMenu}>
             <span></span>
             <span></span>
