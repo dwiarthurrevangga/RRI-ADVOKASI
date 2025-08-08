@@ -15,6 +15,7 @@ const AdminNavigation = ({ userRole }) => {
     { path: '/admin', label: 'Dashboard', icon: '📊', roles: ['admin', 'redaktur', 'reporter'] },
     { path: '/admin/reports', label: 'Kelola Laporan', icon: '📝', roles: ['admin', 'redaktur', 'reporter'] },
     { path: '/admin/users', label: 'Kelola Pengguna', icon: '👥', roles: ['admin'] },
+    { path: '/staff-profil', label: 'Profil Saya', icon: '👤', roles: ['admin', 'redaktur', 'reporter'] },
   ];
 
   const filteredMenuItems = menuItems.filter(item => item.roles.includes(userRole));
@@ -41,7 +42,7 @@ const AdminNavigation = ({ userRole }) => {
 
       <div className="nav-footer">
         <button onClick={handleLogout} className="logout-btn">
-          🚪 Keluar
+          Keluar
         </button>
       </div>
     </nav>

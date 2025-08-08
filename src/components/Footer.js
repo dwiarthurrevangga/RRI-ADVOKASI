@@ -59,13 +59,6 @@ const Footer = () => {
                 advokasi@rri.co.id
               </div>
             </div>
-            <div className="contact-item">
-              <span className="contact-icon">🕒</span>
-              <div className="contact-details">
-                <strong>Jam Operasional:</strong><br />
-                Senin - Jumat: 08:00 - 16:00 WIB
-              </div>
-            </div>
           </div>
         </div>
       </div>

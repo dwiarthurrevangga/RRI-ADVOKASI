@@ -298,7 +298,7 @@ const ReportManagement = ({ userRole }) => {
                   </select>
                 )}
                 
-                <button className="detail-btn">👁️ Detail</button>
+                <button className="detail-btn">Detail</button>
               </div>
             </div>
           ))}

@@ -10,11 +10,20 @@ const Header = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    // Check for logged in user
-    const userData = localStorage.getItem('userData');
-    const userToken = localStorage.getItem('userToken');
-    if (userData && userToken) {
-      setUser(JSON.parse(userData));
+    // Check for logged in user - both citizen and staff
+    const citizenData = localStorage.getItem('userData');
+    const citizenToken = localStorage.getItem('userToken');
+    const staffData = localStorage.getItem('user');
+    
+    if (citizenData && citizenToken) {
+      // Citizen user
+      setUser(JSON.parse(citizenData));
+    } else if (staffData) {
+      // Staff user (reporter, redaktur, admin)
+      const staffUser = JSON.parse(staffData);
+      if (staffUser.isAuthenticated) {
+        setUser(staffUser);
+      }
     }
   }, []);
 
@@ -57,12 +66,21 @@ const Header = () => {
   };
 
   const handleProfile = () => {
-    navigate('/profil');
+    // Navigate based on user type
+    if (user.role && (user.role === 'reporter' || user.role === 'redaktur' || user.role === 'admin')) {
+      // Staff user - go to staff profile page
+      navigate('/staff-profil');
+    } else {
+      // Citizen user - go to citizen profile page
+      navigate('/profil');
+    }
   };
 
   const handleLogout = () => {
+    // Clear both citizen and staff authentication data
     localStorage.removeItem('userData');
     localStorage.removeItem('userToken');
+    localStorage.removeItem('user');
     setUser(null);
     navigate('/');
   };
@@ -97,7 +115,7 @@ const Header = () => {
           {user ? (
             <div className="user-menu">
               <button className="user-btn" onClick={handleProfile}>
-                👤 {user.fullName}
+                👤 {user.fullName || user.name}
               </button>
               <button className="logout-btn" onClick={handleLogout}>
                 Keluar

@@ -10,6 +10,7 @@ import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
 import CitizenDashboard from './pages/CitizenDashboard';
 import ProfilePage from './pages/ProfilePage';
+import StaffProfilePage from './pages/StaffProfilePage';
 import AdminDashboard from './pages/AdminDashboard';
 import ProtectedRoute from './components/ProtectedRoute';
 
@@ -27,6 +28,7 @@ function App() {
             <Route path="/daftar" element={<RegisterPage />} />
             <Route path="/dashboard-warga" element={<CitizenDashboard />} />
             <Route path="/profil" element={<ProfilePage />} />
+            <Route path="/staff-profil" element={<StaffProfilePage />} />
             <Route 
               path="/admin/*" 
               element={
